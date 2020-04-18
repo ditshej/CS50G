@@ -15,6 +15,8 @@
     the original Pong machines or the Atari 2600 in terms of
     resolution, though in widescreen (16:9) so it looks nicer on 
     modern systems.
+
+    @update by ditshej: implement never failing AI for player 2
 ]]
 
 -- push is a library that will allow us to draw our game at a virtual
@@ -242,13 +244,14 @@ function love.update(dt)
     end
 
     -- player 2
-    if love.keyboard.isDown('up') then
-        player2.dy = -PADDLE_SPEED
-    elseif love.keyboard.isDown('down') then
-        player2.dy = PADDLE_SPEED
-    else
-        player2.dy = 0
-    end
+--    if love.keyboard.isDown('up') then
+--        player2.dy = -PADDLE_SPEED
+--    elseif love.keyboard.isDown('down') then
+--        player2.dy = PADDLE_SPEED
+--    else
+--        player2.dy = 0
+--    end
+    player2.y = ball.y - (player2.height / 2)
 
     -- update our ball based on its DX and DY only if we're in play state;
     -- scale the velocity by dt so movement is framerate-independent
