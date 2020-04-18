@@ -1,3 +1,6 @@
-[submodule "1-pong/lession0"]
-	path = 1-pong/lession0
+[submodule "1-pong/lession0-games50-pong"]
+	path = 1-pong/lession0-games50-pong
 	url = https://github.com/games50/pong.git
+[submodule "1-pong/lession0-reduced-reptile-adaption-for-love11"]
+	path = 1-pong/lession0-reduced-reptile-adaption-for-love11
+	url = https://github.com/reduced-reptile/pong.git
