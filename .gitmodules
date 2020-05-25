@@ -4,3 +4,6 @@
 [submodule "1-pong/lession0-reduced-reptile-adaption-for-love11"]
 	path = 1-pong/lession0-reduced-reptile-adaption-for-love11
 	url = https://github.com/reduced-reptile/pong.git
+[submodule "2-fifty-bird/lession1-games50-fifty-bird"]
+	path = 2-fifty-bird/lession1-games50-fifty-bird
+	url = https://github.com/games50/fifty-bird.git
