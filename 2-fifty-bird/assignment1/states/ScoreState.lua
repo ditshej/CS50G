@@ -6,9 +6,15 @@
     A simple state used to display the player's score before they
     transition back into the play state. Transitioned to from the
     PlayState when they collide with a Pipe.
+
+    @update by ditshej: add score medals
 ]]
 
 ScoreState = Class{__includes = BaseState}
+
+GOLD_SCORE = 3
+SILVER_SCORE = 2
+LIKE_SCORE = 1
 
 --[[
     When we enter the score state, we expect to receive the score
@@ -33,5 +39,19 @@ function ScoreState:render()
     love.graphics.setFont(mediumFont)
     love.graphics.printf('Score: ' .. tostring(self.score), 0, 100, VIRTUAL_WIDTH, 'center')
 
-    love.graphics.printf('Press Enter to Play Again!', 0, 160, VIRTUAL_WIDTH, 'center')
+    if self.score >= GOLD_SCORE then
+        love.graphics.draw(love.graphics.newImage('medal-gold.png'), VIRTUAL_WIDTH / 2 -16, VIRTUAL_HEIGHT/ 2)
+    elseif self.score >= SILVER_SCORE then
+        love.graphics.draw(love.graphics.newImage('medal-silver.png'), VIRTUAL_WIDTH / 2 -16, VIRTUAL_HEIGHT/ 2)
+    elseif self.score >= LIKE_SCORE then
+        love.graphics.draw(love.graphics.newImage('medal-like.png'), VIRTUAL_WIDTH / 2 -16, VIRTUAL_HEIGHT/ 2)
+    end
+
+
+    if self.score >= LIKE_SCORE then
+        love.graphics.printf('Press Enter to Play Again!', 0, 200, VIRTUAL_WIDTH, 'center')
+    else
+        love.graphics.printf('Press Enter to Play Again!', 0, 160, VIRTUAL_WIDTH, 'center')
+    end
+
 end
