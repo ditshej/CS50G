@@ -6,6 +6,8 @@
     The PlayState class is the bulk of the game, where the player actually controls the bird and
     avoids pipes. When the player collides with a pipe, we should go to the GameOver state, where
     we then go back to the main menu.
+
+    @update by ditshej: randomize pipe interval
 ]]
 
 PlayState = Class{__includes = BaseState}
@@ -25,14 +27,17 @@ function PlayState:init()
 
     -- initialize our last recorded Y value for a gap placement to base other gaps off of
     self.lastY = -PIPE_HEIGHT + math.random(80) + 20
+
+    -- initiate time between pipe spawing
+    self.spawing = 3
 end
 
 function PlayState:update(dt)
     -- update timer for pipe spawning
     self.timer = self.timer + dt
 
-    -- spawn a new pipe pair every second and a half
-    if self.timer > 2 then
+    -- spawn a new pipe pair randomly
+    if self.timer > self.spawing then
         -- modify the last Y coordinate we placed so pipe gaps aren't too far apart
         -- no higher than 10 pixels below the top edge of the screen,
         -- and no lower than a gap length (90 pixels) from the bottom
@@ -45,6 +50,9 @@ function PlayState:update(dt)
 
         -- reset timer
         self.timer = 0
+
+        -- set randomized time for next pipe spawing
+        self.spawing = math.random(2,5)
     end
 
     -- for every pair of pipes..
@@ -74,18 +82,18 @@ function PlayState:update(dt)
     end
 
     -- simple collision between bird and all pipes in pairs
-    for k, pair in pairs(self.pipePairs) do
-        for l, pipe in pairs(pair.pipes) do
-            if self.bird:collides(pipe) then
-                sounds['explosion']:play()
-                sounds['hurt']:play()
-
-                gStateMachine:change('score', {
-                    score = self.score
-                })
-            end
-        end
-    end
+--    for k, pair in pairs(self.pipePairs) do
+--        for l, pipe in pairs(pair.pipes) do
+--            if self.bird:collides(pipe) then
+--                sounds['explosion']:play()
+--                sounds['hurt']:play()
+--
+--                gStateMachine:change('score', {
+--                    score = self.score
+--                })
+--            end
+--        end
+--    end
 
     -- update bird based on gravity and input
     self.bird:update(dt)
