@@ -7,3 +7,6 @@
 [submodule "2-fifty-bird/lession1-games50-fifty-bird"]
 	path = 2-fifty-bird/lession1-games50-fifty-bird
 	url = https://github.com/games50/fifty-bird.git
+[submodule "3-breakout/lesson2-games50-breakout"]
+	path = 3-breakout/lesson2-games50-breakout
+	url = https://github.com/games50/breakout.git
